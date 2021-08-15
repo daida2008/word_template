@@ -1,0 +1,23 @@
+Sub replace()
+
+mykeywords = Array("跟踪", "后门")
+Found = False
+Result = "found 敏感词汇："
+For myword = LBound(mykeywords) To UBound(mykeywords)
+
+    With ActiveDocument.Content
+        If .Find.Execute(findText:=mykeywords(myword)) Then
+            Found = True
+            Result = Result & "/" & mykeywords(myword)
+        End If
+    End With
+    
+Next
+
+If Found Then
+    MsgBox (Result)
+Else
+    MsgBox ("not found 敏感词汇")
+End If
+
+End Sub
